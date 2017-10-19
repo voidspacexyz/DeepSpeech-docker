@@ -32,12 +32,14 @@ RUN pip install --upgrade pip \
    && pip install --upgrade \
       setuptools \
    && pip install --upgrade \
-      tensorflow \
+#      tensorflow==1.3.0 \
+      https://index.taskcluster.net/v1/task/project.deepspeech.tensorflow.pip.cpu.0b3924976af2f14707702156973725ec5fd4a32d/artifacts/public/tensorflow_warpctc-1.3.0rc0-cp27-cp27mu-linux_x86_64.whl \
       pyxdg \
       python_speech_features \
       sox \
       pandas
 
+WORKDIR /work/
 RUN git clone https://github.com/mozilla/DeepSpeech \
    && cd DeepSpeech \
    && pip install -r requirements.txt
@@ -45,6 +47,6 @@ RUN git clone https://github.com/mozilla/DeepSpeech \
 RUN wget https://index.taskcluster.net/v1/task/project.deepspeech.deepspeech.native_client.master.cpu/artifacts/public/native_client.tar.xz -P /tmp \
         && cd /tmp \
         && tar -xJvf native_client.tar.xz \
-        && cp libctc_decoder_with_kenlm.so /work/DeepSpeech/native_client
+        && cp -r *.so /work/DeepSpeech/native_client/
 
-WORKDIR /work/DeepSpeech/
+WORKDIR DeepSpeech
