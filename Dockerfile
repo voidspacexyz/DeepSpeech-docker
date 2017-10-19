@@ -1,3 +1,4 @@
+# Initial Docker file was taken from : https://hub.docker.com/r/manujbhatia/deepspeech/
 FROM ubuntu:16.04
 
 ENV GIT_LFS_VER=2.1.1
@@ -37,11 +38,13 @@ RUN pip install --upgrade pip \
       sox \
       pandas
 
-WORKDIR /work
 RUN git clone https://github.com/mozilla/DeepSpeech \
    && cd DeepSpeech \
    && pip install -r requirements.txt
+
 RUN wget https://index.taskcluster.net/v1/task/project.deepspeech.deepspeech.native_client.master.cpu/artifacts/public/native_client.tar.xz -P /tmp \
         && cd /tmp \
         && tar -xJvf native_client.tar.xz \
         && cp libctc_decoder_with_kenlm.so /work/DeepSpeech/native_client
+
+WORKDIR /work/DeepSpeech/
