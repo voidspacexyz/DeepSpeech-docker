@@ -33,7 +33,7 @@ RUN pip install --upgrade pip \
       setuptools \
    && pip install --upgrade \
 #      tensorflow==1.3.0 \
-      https://index.taskcluster.net/v1/task/project.deepspeech.tensorflow.pip.cpu.0b3924976af2f14707702156973725ec5fd4a32d/artifacts/public/tensorflow_warpctc-1.3.0rc0-cp27-cp27mu-linux_x86_64.whl \
+	https://index.taskcluster.net/v1/task/project.deepspeech.tensorflow.pip.master.cpu/artifacts/public/tensorflow_warpctc-1.3.0rc0-cp27-cp27mu-linux_x86_64.whl \
       pyxdg \
       python_speech_features \
       sox \
